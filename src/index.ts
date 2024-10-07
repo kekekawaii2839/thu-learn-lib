@@ -1,7 +1,8 @@
 import * as cheerio from 'cheerio';
 import type * as DOM from 'domhandler';
 import { Base64 } from 'js-base64';
-import makeFetch from 'node-fetch-cookie-native';
+import fetchCookie from 'fetch-cookie';
+import type { CookieJar } from 'tough-cookie';
 
 import {
   ApiError,
@@ -46,6 +47,10 @@ import {
   parseSemesterType,
   trimAndDefine,
 } from './utils';
+
+function makeFetch(jar?: CookieJar): typeof fetch {
+  return fetchCookie(fetch, jar);
+}
 
 const CHEERIO_CONFIG: cheerio.CheerioOptions = {
   // _useHtmlParser2
