@@ -46,7 +46,7 @@
     ]
   },
   "scripts": {
-    "build": "bob build",
+    "build": "bob build && bob build --target commonjs && bob build --target module",
     "dev": "vite",
     "dev:build": "vite build",
     "format": "prettier --write \"{src,test,demo}/**/*.{ts,html,json}\" \"*.{ts,md,json}\"",
