@@ -1051,6 +1051,11 @@ export class Learn2018Helper {
   public getCurrentLanguage(): Language {
     return this.#lang;
   }
+
+  public async downloadFileFromURL(url: string): Promise<Blob> {
+    const response = await this.#myFetchWithToken(url);
+    return await response.blob();
+  }
 }
 
 export * from './types';

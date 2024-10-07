@@ -97,6 +97,7 @@ export declare class Learn2018Helper {
     submitHomework(id: string, content?: string, attachment?: IHomeworkSubmitAttachment, removeAttachment?: boolean): Promise<undefined>;
     setLanguage(lang: Language): Promise<void>;
     getCurrentLanguage(): Language;
+    downloadFileFromURL(url: string): Promise<Blob>;
 }
 export * from './types';
 //# sourceMappingURL=index.d.ts.map
