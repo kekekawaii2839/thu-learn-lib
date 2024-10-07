@@ -3,27 +3,55 @@
   "version": "3.2.1",
   "description": "a JavaScript library to provide a program-friendly interface to Web Learning (2018) of Tsinghua University",
   "type": "module",
-  "module": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "browser": "lib/index.global.js",
-  "unpkg": "lib/index.global.js",
-  "jsdelivr": "lib/index.global.js",
   "files": [
     "lib"
   ],
+  "main": "./lib/commonjs/index.js",
+  "module": "./lib/module/index.js",
+  "types": "./lib/typescript/commonjs/index.d.ts",
   "exports": {
     ".": {
-      "types": "./lib/index.d.ts",
-      "import": "./lib/index.js"
+      "import": {
+        "types": "./lib/typescript/module/index.d.ts",
+        "default": "./lib/module/index.js"
+      },
+      "require": {
+        "types": "./lib/typescript/commonjs/index.d.ts",
+        "default": "./lib/commonjs/index.js"
+      }
     }
   },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "commonjs",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "esm": true
+        }
+      ]
+    ]
+  },
   "scripts": {
-    "build": "tsup",
+    "build": "bob build",
     "dev": "vite",
     "dev:build": "vite build",
     "format": "prettier --write \"{src,test,demo}/**/*.{ts,html,json}\" \"*.{ts,md,json}\"",
-    "lint": "eslint",
-    "test": "vitest run"
+    "lint": "eslint --ext .ts 'src/**'",
+    "test": "OPENSSL_CONF=openssl.cnf vitest run"
   },
   "keywords": [
     "tsinghua",
@@ -36,22 +64,23 @@
     "url": "https://github.com/Harry-Chen/thu-learn-lib.git"
   },
   "devDependencies": {
-    "@eslint/js": "^9.6.0",
-    "@types/node": "20.14.9",
+    "@types/node": "22.5.1",
     "@types/tough-cookie": "^4.0.5",
-    "@types/webextension-polyfill": "^0.10.7",
+    "@types/webextension-polyfill": "^0.12.1",
+    "@typescript-eslint/eslint-plugin": "^8.3.0",
+    "@typescript-eslint/parser": "^8.3.0",
     "domhandler": "^5.0.3",
     "dotenv": "^16.4.5",
-    "eslint": "^9.6.0",
+    "eslint": "^9.9.1",
     "fake-parse5": "^0.0.1",
-    "prettier": "^3.3.2",
-    "terser": "^5.31.1",
-    "tsup": "^8.1.0",
-    "typescript": "^5.5.2",
-    "typescript-eslint": "^7.14.1",
-    "vite": "^5.3.2",
-    "vite-plugin-web-extension": "^4.1.4",
-    "vitest": "^1.6.0",
+    "prettier": "^3.3.3",
+    "react-native-builder-bob": "^0.30.0",
+    "terser": "^5.31.6",
+    "tsup": "^8.2.4",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2",
+    "vite-plugin-web-extension": "^4.1.6",
+    "vitest": "^2.0.5",
     "webextension-polyfill": "^0.12.0"
   },
   "dependencies": {
@@ -62,5 +91,6 @@
     "node-fetch-cookie-native": "^0.0.2",
     "node-fetch-native": "^1.6.4",
     "tough-cookie": "^4.1.4"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha256.c17d3797fb9a9115bf375e31bfd30058cac6bc9c3b8807a3d8cb2094794b51ca"
 }
